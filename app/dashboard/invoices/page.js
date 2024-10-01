@@ -1,6 +1,7 @@
 import { lusitana } from '@/app/ui/fonts'
 import Search from '@/app/ui/search'
 import HpPercipitation from '@/app/ui/invoices/hp_percipitation'
+import OtherPercipitation from '@/app/ui/invoices/other_percipitation'
 
 export const metadata = {
   title: 'Осадки',
@@ -67,7 +68,8 @@ export default async function Page({searchParams}) {
           </tbody>
         </table>
 			</div>
-      <HpPercipitation year={calcYear} month={calcMonth} />
+      <HpPercipitation date1={qParams.notbefore} date2={qParams.notafter} />
+      <OtherPercipitation year={calcYear} month={calcMonth} lastDay={lastDay}/>
     </div>
   )
 }
