@@ -15,7 +15,12 @@ const links = [
   { name: 'Главная', href: '/', icon: HomeIcon },
   {
     name: 'Осадки',
-    href: '/dashboard/invoices',
+    href: '/dashboard/precipitation',
+    icon: DocumentDuplicateIcon,
+  },
+  {
+    name: 'Создать измерение',
+    href: '/dashboard/measurements/create',
     icon: DocumentDuplicateIcon,
   },
   { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },

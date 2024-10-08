@@ -2,11 +2,21 @@ import { lusitana } from '@/app/ui/fonts'
 import Search from '@/app/ui/search'
 import HpPercipitation from '@/app/ui/invoices/hp_percipitation'
 import OtherPercipitation from '@/app/ui/invoices/other_percipitation'
+// import connection from '@/app/mysql'
 
+// export async function getServerSideProps() {
+//   const [rows] = await connection.promise().query('SELECT * FROM laboratories');
+//     return {
+//       props: {
+//         data: rows,
+//       },
+//     };
+//  }
 export const metadata = {
-  title: 'Осадки',
+  title: `Осадки`,
 }
 export default async function Page({searchParams}) {
+  // const [rows] = await connection.promise().query('SELECT * FROM laboratories');
   let today = new Date()
   let m = today.getMonth()+1
   const calcYear = searchParams?.reportDate?.slice(0,4) || today.getFullYear()
@@ -53,7 +63,7 @@ export default async function Page({searchParams}) {
         <Search />
       </div>
 			<div>
-        <h1>Осадки по данным метеостанций за {calcMonth} месяц {calcYear} года </h1>
+        <h1>Осадки по данным метеостанций за {calcMonth} месяц {calcYear} года</h1>
         <table className="hidden min-w-full rounded-md text-gray-900 md:table">
           <thead className="rounded-md bg-gray-400 text-left text-sm font-normal">
             <tr key="0">
