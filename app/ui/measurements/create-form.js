@@ -1,78 +1,82 @@
 'use client'
 
-// import { CustomerField } from '@/app/lib/definitions';
 import { useState } from 'react';
-import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link';
-import {
-  CheckIcon,
-  ClockIcon,
-  CurrencyDollarIcon,
-  UserCircleIcon,
-} from '@heroicons/react/24/outline';
-import { Button } from '@/app/ui/button';
 import { useFormStatus } from "react-dom"
-
-// import { createMeasurement } from '@/app/lib/actions'
-// import { useActionState } from 'react'
-
-export default function Form({ posts }) {
-  const terms = [1,7,13,19]
-  let today = new Date()
+let values = {}
+export default function Form({ weather, materials, postId, date, term }) {
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
   const { pending } = useFormStatus()
-  // const createWithWeather = createMeasurement.bind(null, weather)
-  const initialState = { message: null, errors: {} }
-  // const [state, formAction] = useActionState(createMeasurement, initialState)
-  const [observDate, setObservDate] = useState(today.toISOString().slice(0,10))
-  const searchParams = useSearchParams()
-  const pathname = usePathname();
-  const { replace } = useRouter()
-  const handleDate = e=>{
-    setObservDate(e.target.value)
-    const params = new URLSearchParams(searchParams)
-    params.set('reportDate', e.target.value)
-    replace(`${pathname}?${params.toString()}`)
+  
+  const handleValueChange = e=>{
+    values[+e.target.id]=e.target.value
+  }
+  
+  let ths = [<th key='1001'></th>];
+  let tds = [<td key='1002'><b>Значение</b></td>];
+  materials.map( m => {
+    ths.push(<th key={m.id} scope="col" className="px-4 py-5 font-medium sm:pl-6">{m.name}</th>);
+    tds.push(<td key={m.id}>
+      <input type="number" id={m.id} value={values[+m.id]} pattern="[0-9]+([,\.][0-9]+)?" onChange={handleValueChange} name={m.id} min="0.0" step="0.001"/>
+    </td>);
+  })
+  async function onSubmit(event) {
+    event.preventDefault()
+    setIsLoading(true)
+    setError(null)
+    let measurement = {}
+    measurement.date = date
+    measurement.term = term
+    measurement.post_id = postId
+    measurement.wind_direction = +weather.windDirection/10
+    measurement.wind_speed = weather.windSpeed
+    measurement.temperature = weather.temperature
+    measurement.atmosphere_pressure = weather.pressure
+    try {   
+      const response = await fetch('http://localhost:3002/measurements/create_or_update.json', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json',},
+        body: JSON.stringify({measurement, values}),
+      })
+      if (!response.ok) {
+        alert(JSON.stringify('Error'))
+        throw new Error('Failed to submit the data. Please try again.')
+      }
+      const data = await response.json()
+      values = {}
+      alert(JSON.stringify(data.error))
+    } catch (error) {
+      setError(error.message)
+      console.error(error)
+    } finally {
+      setIsLoading(false)
+    }
   }
   return (
-    // <form action={createWithWeather}>
-    // <form action={formAction}>
-    <form >
+    <form onSubmit={onSubmit}>
       <div className="rounded-md bg-gray-500 p-4 md:p-6  text-gray-800">
-        
-        {/* Customer Name */}
-        <div className="mb-4">
-          <label htmlFor="term" className="mb-2 block text-sm font-medium">
-            Срок
-          </label>
-          <div className="relative">
-            <select
-              id="term"
-              name="term"
-              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 text-gray-500"
-              defaultValue="1"
-              // aria-describedby="term-error"
-            >
-              {terms.map(t => (
-                <option key={t} value={t}>{t}</option>
-              ))}
-            </select>
-            <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
-          </div>
-          
-        </div>
-
+        <table className="hidden min-w-full text-gray-900 md:table">
+          <thead className="rounded-lg text-left text-sm font-normal">
+            <tr>
+              {ths}
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
+              {tds}
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link
-          href="/dashboard/invoices"
+          href="/dashboard/precipitation"
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
-        >
-          Cancel
-        </Link>
-        <button type="submit" disabled={pending}>
-          {pending ? "Сохранение..." : "Создать"}
+        >Отменить</Link>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? 'Сохранение...' : 'Создать'}
         </button>
-        <Button type="submit">Создать</Button>
       </div>
     </form>
   );

@@ -51,16 +51,16 @@ export async function authenticate(
 // const CreateInvoice = FormSchema.omit({ id: true, date: true })
 // const UpdateInvoice = FormSchema.omit({ id: true, date: true })
 
-export async function createMeasurement(formData){
-  const rawFormData = {
+// export async function createMeasurement(formData){
+  // const rawFormData = {
     // temperature: formData.get('temperature'),
     // amount: formData.get('amount'),
     // status: formData.get('status'),
-  }
+  // }
 
-  revalidatePath('/dashboard/precipitation')
-  redirect('/dashboard/precipitation')
-}
+  // revalidatePath('/dashboard/precipitation')
+  // redirect('/dashboard/precipitation')
+// }
 // export const dynamic = 'force-dynamic'
 export async function getWeather(station,observDate){
   // http://10.54.1.30:8640/get?limit=0&stations=34712&quality=1&source=100&streams=1&hashes=-789901366,1345858116,795976906,1223041370&notbefore=1724630400&notafter=1724706000&syn_hours=03:00
@@ -76,6 +76,47 @@ export async function getWeather(station,observDate){
     return [];
   }
 }
+
+export async function createMeasurement(prevState, weather, formData) {
+  // e.preventDefault();
+  let measurement = {};
+  if (this.state.weather == null || Object.keys(this.state.weather).length === 0) {
+    alert('Нет данных о погоде!');
+    return;
+  }
+  if (Object.keys(this.state.values).length === 0) {
+    alert('Нет данных о концентрациях!')
+    return
+  }
+  measurement.date = this.state.date.trim()
+  measurement.post_id = this.state.postId
+  measurement.term = this.state.term
+  measurement.wind_direction = this.state.weather.wind_direction
+  measurement.wind_speed = this.state.weather.wind_speed
+  measurement.temperature = this.state.weather.temperature
+  measurement.phenomena = this.state.weather.phenomena
+  measurement.relative_humidity = this.state.weather.relative_humidity
+  measurement.partial_pressure = this.state.weather.partial_pressure
+  measurement.atmosphere_pressure = this.state.weather.atmosphere_pressure
+  this.state.error = ''
+  $.ajax({
+    type: 'POST',
+    url: "create_or_update",
+    data: {measurement: measurement, values: values}
+  }).done(function(data) {
+    var cs = {}
+    if (Object.keys(data.concentrations).length > 0) {
+      Object.keys(data.concentrations).forEach((k) => cs[k] = data.concentrations[k].concentration)
+    }
+    that.setState({error: data.error, concentrations: data.concentrations, concs: cs})
+  }.bind(this))
+  .fail(function(res) {
+    that.setState({values: {}, value: '', error: "Ошибка при сохранении данных. Дублирование записи."})
+  })
+  revalidatePath('/dashboard/precipitation')
+  redirect('/dashboard/precipitation')
+}
+
 export async function createInvoice(prevState, formData) {
     // const validatedFields = CreateInvoice.safeParse({
     //   customerId: formData.get('customerId'),

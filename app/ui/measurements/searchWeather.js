@@ -22,58 +22,52 @@ export default function SearchWeather({posts}) {
   }
   const terms = [1,7,13,19]
   return (
-    <div className="relative ">
-      {/* <div> */}
-        <label htmlFor ="observ-date" className='mb-2 block text-sm font-medium'>
-          Дата измерения
-        </label>
-        <input id="observ-date" type='date' value={observDate} onChange={(e)=> handleSearch(e)} className="peer block text-gray-800 w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 "/>
-      {/* </div> */}
-      <div className="mb-4">
-          <label htmlFor="term" className="mb-2 block text-sm font-medium">
-            Срок
-          </label>
-          {/* <div className="relative"> */}
-            <select
-              id="term"
-              name="term"
-              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 text-gray-800"
-              defaultValue="1"
-              onChange={(e) => {
-                handleSearch(e);
-              }}
-            >
-              {terms.map(t => (
-                <option key={t} value={t}>{t}</option>
-              ))}
-            </select>
-            {/* <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" /> */}
-          </div>
-      {/* </div> */}
-      <div className="mb-4">
-      <label htmlFor="post" className="mb-2 block text-sm font-medium">
-        Пост
-      </label>
-      <select
-        id="post"
-        name="post"
-        className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 text-gray-800"
-        defaultValue={searchParams.get('post')?.toString()}
-        onChange={(e) => {
-          handleSearch(e);
-        }}
-      >
-        {posts.map(p => (
-          <option key={p.id} value={p.id}>{p.name}</option>
-        ))}
-      </select>
-      </div>
-      {/* <input
-        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-        onChange={(e) => {
-          handleSearch(e.target.value);
-        }}
-      /> */}
+    <div className="rounded-md bg-blue-500 p-4 md:p-6  text-gray-800">
+      <table className="hidden min-w-full text-gray-900 md:table">
+        <thead className="rounded-lg text-left text-sm font-normal">
+          <tr>
+            <th scope="col" className="px-4 py-5 font-medium sm:pl-6">Дата измерения</th>
+            <th scope="col" className="px-4 py-5 font-medium sm:pl-6">Срок</th>
+            <th scope="col" className="px-4 py-5 font-medium sm:pl-6">Пост</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="w-full border-b py-3 text-sm last-of-type:border-none ">
+            <td>
+              <input id="observ-date" type='date' value={observDate} onChange={(e)=> handleSearch(e)} className="peer block text-gray-800 w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 "/></td>
+            <td>
+              <select
+                id="term"
+                name="term"
+                className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 text-gray-800"
+                defaultValue="1"
+                onChange={(e) => {
+                  handleSearch(e);
+                }}
+              >
+                {terms.map(t => (
+                  <option key={t} value={t}>{t}</option>
+                ))}
+              </select>
+            </td>
+            <td>
+              <select
+                id="post"
+                name="post"
+                className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 text-gray-800"
+                defaultValue={searchParams.get('post')?.toString()}
+                onChange={(e) => {
+                  handleSearch(e);
+                }}
+              >
+                {posts.map(p => (
+                  <option key={p.id} value={p.id}>{p.name}</option>
+                ))}
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
