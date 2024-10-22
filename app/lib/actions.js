@@ -113,8 +113,8 @@ export async function createMeasurement(prevState, weather, formData) {
   .fail(function(res) {
     that.setState({values: {}, value: '', error: "Ошибка при сохранении данных. Дублирование записи."})
   })
-  revalidatePath('/dashboard/precipitation')
-  redirect('/dashboard/precipitation')
+  revalidatePath('/dashboard/measurements')
+  redirect('/dashboard/measurements')
 }
 
 export async function createInvoice(prevState, formData) {

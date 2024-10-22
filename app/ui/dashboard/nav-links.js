@@ -19,11 +19,16 @@ const links = [
     icon: DocumentDuplicateIcon,
   },
   {
-    name: 'Создать измерение',
-    href: '/dashboard/measurements/create',
+    name: 'Среднесуточная температура',
+    href: '/dashboard/temperature',
     icon: DocumentDuplicateIcon,
   },
-  { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
+  {
+    name: 'Измерения',
+    href: '/dashboard/measurements',
+    icon: DocumentDuplicateIcon,
+  },
+  // { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
 ];
 
 export default function NavLinks() {
@@ -39,7 +44,7 @@ export default function NavLinks() {
             className={clsx(
               'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-400 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
               {
-                'bg-sky-100 text-blue-600': pathname === link.href,
+                'bg-sky-100 text-blue-700': pathname === link.href,
               },
             )}
           >

@@ -19,9 +19,9 @@ export default function Search() {
   return (
     <div className="relative flex flex-1 flex-shrink-0">
       <div>
-        <label htmlFor ="search">
+        {/* <label htmlFor ="search">
           Отчетный месяц
-        </label>
+        </label> */}
         <input id="search" type='date' value={reportDate} onChange={(e)=> handleSearch(e)} className="peer block bg-blue-500 w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-100"/>
 			</div>
     </div>

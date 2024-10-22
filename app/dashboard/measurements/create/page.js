@@ -1,4 +1,4 @@
-import Form from '@/app/ui/measurements/create-form'
+import Form from '../../../ui/measurements/create-form' ///ui/measurements/create-form'
 import Breadcrumbs from '@/app/ui/measurements/breadcrumbs'
 import connection from '@/app/mysql'
 import SearchWeather from '@/app/ui/measurements/searchWeather';
@@ -52,8 +52,8 @@ export default async function Page({searchParams}) {
     })
   // select p.id, p.name, s.name, l.name from posts p join cities s on s.id=p.city_id join laboratories l on l.id=p.laboratory_id where active=1;
   const [posts] = await connection.promise().query('SELECT * FROM posts WHERE active=1;');
-  let p = posts.find(p=>p.id=== +postId)
   const [materials] = await connection.promise().query('SELECT * FROM materials WHERE active=1;');
+  let p = posts.find(p=>p.id=== +postId)
   return (
     <main>
       <Breadcrumbs                                                                                                              
@@ -61,7 +61,7 @@ export default async function Page({searchParams}) {
           { label: 'Измерения', href: '/dashboard/measurements' },
           {                                                                                                                         
             label: 'Создать измерение',                                                                                                
-            href: '/dashboard/invoices/create',                                                                                     
+            href: '/dashboard/measurements/create',                                                                                     
             // active: true,                                                                                                         
           },                                                                                                                    
         ]}

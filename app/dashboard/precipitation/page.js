@@ -1,7 +1,7 @@
-import { lusitana } from '@/app/ui/fonts'
-import Search from '@/app/ui/search'
-import HpPercipitation from '@/app/ui/invoices/hp_percipitation'
-import OtherPercipitation from '@/app/ui/invoices/other_percipitation'
+import { lusitana } from '../../ui/fonts' //app/ui/fonts'
+import Search from '../../ui/search' // app/ui/search'
+import HpPercipitation from '../../ui/invoices/hp_percipitation' // app/ui/invoices/hp_percipitation'
+import OtherPercipitation from '../../ui/invoices/other_percipitation'
 // import connection from '@/app/mysql'
 
 // export async function getServerSideProps() {
