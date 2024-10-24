@@ -1,6 +1,7 @@
 // import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
+import { ViewMeasurement, DeleteMeasurement } from '@/app/ui/measurements/buttons'
 // import InvoiceStatus from '@/app/ui/invoices/status';
-import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
+// import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchMeasurements } from '@/app/lib/data';
 
 export default async function MeasurementsTable({currentPage}) {
@@ -34,9 +35,13 @@ export default async function MeasurementsTable({currentPage}) {
                 <th scope="col" className="px-3 py-5 font-medium">
                   Давление
                 </th>
-                <th scope="col" className="relative py-3 pl-6 pr-3">
-                  <span className="sr-only">Просмотреть</span>
+                {/* <th scope="col" className="relative py-3 pl-6 pr-3"> */}
+                <th scope="col" className="px-3 py-5 font-medium">
+                  Просмотр
                 </th>
+                {/* <th scope="col" className="px-3 py-5 font-medium">
+                  Удалить
+                </th> */}
               </tr>
             </thead>
             <tbody className="bg-white">
@@ -68,11 +73,11 @@ export default async function MeasurementsTable({currentPage}) {
                     <p>{measurement.atmosphere_pressure}</p>
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                    <div className="flex justify-end gap-3">
-                      {/* <ViewMeasurement id={measurement.id} />
-                      <DeleteMeasurement id={measurement.id} /> */}
-                    </div>
+                    <ViewMeasurement id={measurement.id} />
                   </td>
+                  {/* <td className="whitespace-nowrap py-3 pl-6 pr-3">
+                      <DeleteMeasurement id={measurement.id} />
+                  </td> */}
                 </tr>
               ))}
             </tbody>

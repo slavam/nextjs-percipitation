@@ -91,7 +91,7 @@ export default async function Page({searchParams}) {
     let content = <div >
       <table className="hidden min-w-full text-gray-900 md:table">
         <thead className="rounded-md bg-gray-400 text-left text-sm font-normal">
-          <tr><th rowSpan='2'>Метеостанции</th><th colSpan={8} align='center'>Сроки</th><th rowSpan='2'>Средняя</th><th rowSpan='2'>N</th><th></th><th></th></tr>
+          <tr><th rowSpan='2'>Метеостанции</th><th colSpan={8} align='center'>Сроки</th><th rowSpan='2'>Средняя</th><th rowSpan='2'>N</th></tr>
           <tr>{liveHead}</tr>
         </thead>
         {myBody}
