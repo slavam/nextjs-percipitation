@@ -38,3 +38,31 @@ export async function fetchMeasurementsPages() {
     // throw new Error('Failed to fetch total number of invoices.');
   }
 }
+
+export async function fetchPollutionsForMeasurement(id){
+  try {
+    const [pollutions] = await connection.promise().query(`SELECT pv.*, m.name FROM pollution_values pv 
+      JOIN materials m ON pv.material_id=m.id
+      WHERE pv.measurement_id = ${id};`);
+    return pollutions
+    // console.log(pollutions)
+    // return await pollutions.json()
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+}
+
+export async function fetchMeasurement(id){
+  // select m.*, p.name from measurements m join posts p on p.id=m.post_id where m.id=
+  try {
+    const measurement = await connection.promise().query(`SELECT m.*, p.name FROM measurements m
+      JOIN posts p ON p.id=m.post_id
+      WHERE m.id = ${id};`);
+    return measurement[0][0]
+    // return await measurement.json()
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+}

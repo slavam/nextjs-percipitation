@@ -24,13 +24,23 @@ export function DeleteMeasurement({ id }) {
   )
 } 
 
-export function ViewMeasurement({id}){
-  const viewMeasurementWithId = viewMeasurement.bind(null, id)
+// export function ViewMeasurement({id}){
+//   const viewMeasurementWithId = viewMeasurement.bind(null, id)
+//   return (
+//     <form action={viewMeasurementWithId}>                                                                                       
+//       <button className="rounded-md border p-1 hover:bg-gray-400">
+//           <MagnifyingGlassIcon className="h-5" />
+//       </button>                                                                                                             
+//     </form>
+//   )
+// }
+export function ViewMeasurement({ id }) {
   return (
-    <form action={viewMeasurementWithId}>                                                                                       
-      <button className="rounded-md border p-1 hover:bg-gray-400">
-          <MagnifyingGlassIcon className="h-5" />
-      </button>                                                                                                             
-    </form>
-  )
+    <Link
+      href={`/dashboard/measurements/${id}/view`}
+      // className="rounded-md border p-0 hover:bg-gray-400"
+    >
+      <MagnifyingGlassIcon className="h-5" />
+    </Link>
+  );
 }
