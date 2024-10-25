@@ -39,9 +39,9 @@ export default async function MeasurementsTable({currentPage}) {
                 <th scope="col" className="px-3 py-5 font-medium">
                   Просмотр
                 </th>
-                {/* <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="px-3 py-5 font-medium">
                   Удалить
-                </th> */}
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white">
@@ -75,9 +75,9 @@ export default async function MeasurementsTable({currentPage}) {
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <ViewMeasurement id={measurement.id} />
                   </td>
-                  {/* <td className="whitespace-nowrap py-3 pl-6 pr-3">
+                  <td className="whitespace-nowrap py-3 pl-6 pr-3">
                       <DeleteMeasurement id={measurement.id} />
-                  </td> */}
+                  </td>
                 </tr>
               ))}
             </tbody>

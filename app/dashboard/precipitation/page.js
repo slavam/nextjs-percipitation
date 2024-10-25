@@ -27,7 +27,8 @@ export default async function Page({searchParams}) {
     notbefore: `${calcYear}-${calcMonth}-01T00:00:00`,
     notafter: `${calcYear}-${calcMonth}-${lastDay}T23:59:59`,
   }
-  let data = await fetch(`http://localhost:3001/observations/observations?limit=0&sources=100&streams=0&hashes=870717212&min_quality=1&syn_hours=15:00,03:00&stations=${qParams.stations}&after=${qParams.notbefore}&before=${qParams.notafter}`)
+  // let data = await fetch(`http://localhost:3001/observations/observations?limit=0&sources=100&streams=0&hashes=870717212&min_quality=1&syn_hours=15:00,03:00&stations=${qParams.stations}&after=${qParams.notbefore}&before=${qParams.notafter}`)
+  let data = await fetch(`http://10.54.1.11:8083/observations/observations?limit=0&sources=100&streams=0&hashes=870717212&min_quality=1&syn_hours=15:00,03:00&stations=${qParams.stations}&after=${qParams.notbefore}&before=${qParams.notafter}`)
   let observations = await data.json()
   let perc = new Array(6).fill(null)
   observations.forEach(o => {

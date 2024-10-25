@@ -143,10 +143,16 @@ export async function createInvoice(prevState, formData) {
 
 export async function deleteMeasurement(id) {
   try {
-    await connection.promise().query(`DELETE FROM measurements WHERE id = ${id};`);
+    const delPollutions = await connection.promise().query(`DELETE FROM pollution_values WHERE measurement_id = ${id};`)
+    const delMeasurement = await connection.promise().query(`DELETE FROM measurements WHERE id = ${id};`)
+    await Promise.all([
+      delPollutions,
+      delMeasurement
+    ])
     revalidatePath('/dashboard/measurements')
     return { message: 'Измерение удалено.' }
   } catch (error) {
+    console.error(error)
     return {message: 'Database Error: Failed to Delete Measurement.'}
   }
 }

@@ -1,4 +1,4 @@
-import Form from '@/app/ui/measurements/create-form' ///ui/measurements/create-form'
+import Form from '@/app/ui/measurements/create-form'
 import Breadcrumbs from '@/app/ui/measurements/breadcrumbs'
 import connection from '@/app/mysql'
 import SearchWeather from '@/app/ui/measurements/searchWeather';

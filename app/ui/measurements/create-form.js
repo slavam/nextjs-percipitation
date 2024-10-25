@@ -35,6 +35,7 @@ export default function Form({ weather, materials, postId, date, term }) {
     measurement.atmosphere_pressure = weather.pressure
     try {   
       const response = await fetch('http://localhost:3002/measurements/create_or_update.json', {
+      // const response = await fetch('http://10.54.1.6:8080/measurements/create_or_update.json', {        
         method: 'POST',
         headers: {'Content-Type': 'application/json',},
         body: JSON.stringify({measurement, values}),

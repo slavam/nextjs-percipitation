@@ -12,7 +12,7 @@ export default async function HpPercipitation({date1, date2}){
   //   notbefore: date1, //`${date1.slice(0,10)}T00:00:00`,
   //   notafter: date2, //`${date2.slice(0,10)}T23:59:59`,
   // }
-	let data = await fetch(`http://localhost:3001/observations/observations?limit=0&sources=1500&streams=0&hashes=869481287&min_quality=1&stations=${posts}&after=${date1}&before=${date2}`)
+	let data = await fetch(`http://10.54.1.11:8083/observations/observations?limit=0&sources=1500&streams=0&hashes=869481287&min_quality=1&stations=${posts}&after=${date1}&before=${date2}`)
   let observations = await data.json()
   let perc = new Array(8).fill(null)
   observations.forEach(o => {
