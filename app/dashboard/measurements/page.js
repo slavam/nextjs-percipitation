@@ -1,5 +1,4 @@
 import Pagination from '@/app/ui/measurements/pagination';
-// import Search from '@/app/ui/search';
 import Table from '@/app/ui/measurements/table';
 import { CreateMeasurement } from '@/app/ui/measurements/buttons';
 import { lusitana } from '@/app/ui/fonts';
@@ -16,7 +15,6 @@ export default async function Page({searchParams}) {
         <h1 className={`${lusitana.className} text-2xl`}>Измерения</h1>
       </div>
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-        {/* <Search placeholder="Search invoices..." /> */}
         <CreateMeasurement />
       </div>
       <Suspense key={currentPage} fallback={<InvoicesTableSkeleton />}>

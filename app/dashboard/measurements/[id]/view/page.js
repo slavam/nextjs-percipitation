@@ -28,9 +28,9 @@ export default async function Page(props) {
           <h1 className={`${lusitana.className} text-2xl`}>Измерение</h1>
         </div>
         <div className="flex w-full items-center justify-between">
-          <h2>Id: {id}; Дата измерения: {measurement.date.toISOString().slice(0,10)}; Срок: {measurement.term}; Пост: {measurement.name}; 
+          <h2>Id: {id}; Дата измерения: {measurement.date.toLocaleDateString('ru')}; Срок: {measurement.term}; Пост: {measurement.name}; 
             Температура: {measurement.temperature}°С; Давление: {measurement.atmosphere_pressure}hPa; Скорость ветра: {measurement.wind_speed}м/с; 
-            Направление ветра: {measurement.wind_direction}°; </h2>
+            Направление ветра: {measurement.wind_direction*10}°; </h2>
         </div>
         <div className="flex w-full items-center justify-between">
           <h1 className={`${lusitana.className} text-2xl`}>Загрязнения</h1>
