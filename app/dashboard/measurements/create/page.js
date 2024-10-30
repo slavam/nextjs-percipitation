@@ -50,7 +50,6 @@ export default async function Page({searchParams}) {
           weather.windDirection = +w.value
       }
     })
-  // select p.id, p.name, s.name, l.name from posts p join cities s on s.id=p.city_id join laboratories l on l.id=p.laboratory_id where active=1;
   const [posts] = await connection.promise().query('SELECT * FROM posts WHERE active=1;');
   const [materials] = await connection.promise().query('SELECT * FROM materials WHERE active=1;');
   let p = posts.find(p=>p.id=== +postId)
