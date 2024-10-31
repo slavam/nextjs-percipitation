@@ -1,4 +1,4 @@
-import Table from '@/app/ui/measurements/table';
+// import Table from '@/app/ui/measurements/table';
 import { lusitana } from '@/app/ui/fonts';
 import ReportMonth from '@/app/ui/reportMonth';
 import { Suspense } from 'react';

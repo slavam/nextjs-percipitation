@@ -4,8 +4,9 @@ export default async function OtherPercipitation({year, month, lastDay}){
   let observations = await data.json()
   observations = observations.precipitation
   let body = []
-  const mStations = ['Авдотьино','Кировский','Макеевка','Старобешево','Тельманово']
-  for (let j = 0; j < 5; j++) {
+  // const mStations = ['Авдотьино','Кировский','Макеевка','Старобешево','Тельманово']
+  const mStations = ['Авдотьино','Кировский','Макеевка','Старобешево','Тельманово','Раздольное','Стрюково','Дмитровка','Новоселовка','Благодатное','Алексеево-Орловка']
+  for (let j = 0; j < mStations.length; j++) {
     let row = [<td key={j} className="whitespace-nowrap bg-white px-4 py-5 text-sm">{mStations[j]}</td>]
     for (let i = 1; i <= lastDay; i++) {
       let val = (observations[i] && observations[i][j])? `${observations[i][j][0]===null?'':observations[i][j][0]}/${observations[i][j][1]===null?'':observations[i][j][1]}`:''
@@ -20,7 +21,6 @@ export default async function OtherPercipitation({year, month, lastDay}){
   }
   return <div>
     <h1>Осадки по данным прочих источников за {month} месяц {year} года</h1>
-    {/* <p>{observations.length} m{month} Y{year}</p> */}
 		<table className="hidden min-w-full rounded-md text-gray-900 md:table">
       <thead className="rounded-md bg-gray-400 text-left text-sm font-normal">
 				<tr key="00">

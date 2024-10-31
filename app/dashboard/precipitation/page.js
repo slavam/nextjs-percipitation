@@ -1,8 +1,7 @@
 import { lusitana } from '../../ui/fonts' //app/ui/fonts'
-import Search from '../../ui/search' // app/ui/search'
 import HpPercipitation from '../../ui/invoices/hp_percipitation' // app/ui/invoices/hp_percipitation'
 import OtherPercipitation from '../../ui/invoices/other_percipitation'
-// import connection from '@/app/mysql'
+import ReportMonth from '@/app/ui/reportMonth'
 
 // export async function getServerSideProps() {
 //   const [rows] = await connection.promise().query('SELECT * FROM laboratories');
@@ -16,12 +15,17 @@ export const metadata = {
   title: `Осадки`,
 }
 export default async function Page({searchParams}) {
-  // const [rows] = await connection.promise().query('SELECT * FROM laboratories');
   let today = new Date()
+  const reportMonth = searchParams?.reportMonth || today.toISOString().slice(0,7)
+  let lastDay = 32 - new Date(+reportMonth.slice(0,4), +(reportMonth.slice(5,7))-1, 32).getDate()
+  let date1 = reportMonth+'-01'
+  let d = new Date(date1)
+  let monthName = d.toLocaleString('ru', { month: 'long' })
+  // let dateSec1 = Math.round(new Date(date1).getTime()/1000)
+  // let dateSec2 = dateSec1+lastDay*24*60*60
   let m = today.getMonth()+1
-  const calcYear = searchParams?.reportDate?.slice(0,4) || today.getFullYear()
-  const calcMonth = searchParams?.reportDate?.slice(5,7) || (m>9? m : '0'+m)
-  let lastDay = 32 - new Date(calcYear, calcMonth-1, 32).getDate()
+  const calcYear = searchParams?.reportMonth?.slice(0,4) || today.getFullYear()
+  const calcMonth = searchParams?.reportMonth?.slice(5,7) || (m>9? m : '0'+m)
   const qParams = {
     stations: '34519,34524,34622,34721,34615,34712',
     notbefore: `${calcYear}-${calcMonth}-01T00:00:00`,
@@ -59,12 +63,11 @@ export default async function Page({searchParams}) {
 			<div className="flex w-full items-center justify-between">
         <h1 className={`${lusitana.className} text-2xl`}>Осадки</h1>
       </div>
-			
 			<div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-        <Search />
+        <ReportMonth />
       </div>
 			<div>
-        <h1>Осадки по данным метеостанций за {calcMonth} месяц {calcYear} года</h1>
+        <h1>Осадки по данным метеостанций за {monthName} месяц {reportMonth.slice(0,4)} года</h1>
         <table className="hidden min-w-full rounded-md text-gray-900 md:table">
           <thead className="rounded-md bg-gray-400 text-left text-sm font-normal">
             <tr key="0">
@@ -80,7 +83,7 @@ export default async function Page({searchParams}) {
         </table>
 			</div>
       <HpPercipitation date1={qParams.notbefore} date2={qParams.notafter} />
-      <OtherPercipitation year={calcYear} month={calcMonth} lastDay={lastDay}/>
+      <OtherPercipitation year={reportMonth.slice(0,4)} month={reportMonth.slice(5,7)} lastDay={lastDay}/>
     </div>
   )
 }
