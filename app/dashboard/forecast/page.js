@@ -111,7 +111,7 @@ export default async function Page({searchParams}) {
         </div>
       </div>
       <div class="table-responsive">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
           <table class="table table-condensed table-hover table-bordered small">
             <thead>
               <tr style={{'background-color': '#666666', height: '80px'}}>
@@ -153,6 +153,9 @@ export default async function Page({searchParams}) {
             </thead>
           </table>
         </div>
+      </div>
+      <div class="footer-bottom text-center pb-5">
+	      <small class="copyright">Copyright &copy; <a href="https://www.weatherapi.com" title="Weather API">Weather API</a></small>
       </div>
     </div>
   )

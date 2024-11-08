@@ -110,7 +110,17 @@ export default async function Page() {
             </tbody>
         </table>
         </div>
-              </div>
+      </div>
+    <footer class="footer">
+      <div class="footer-bottom text-center pb-5">
+	        <small class="copyright">Copyright &copy; <a href="https://www.weatherapi.com" title="Weather API">Weather API</a></small>
+	        <ul class="social-list list-unstyled pt-4 mb-0">
+			      <li class="list-inline-item"><a href="https://github.com/weatherapicom/" target="_blank"><i class="fab fa-github fa-fw"></i></a></li> 
+	          <li class="list-inline-item"><a href="https://twitter.com/weatherapidev/" target="_blank"><i class="fab fa-twitter fa-fw"></i></a></li>
+	          <li class="list-inline-item"><a href="https://www.facebook.com/weatherapidev" target="_blank"><i class="fab fa-facebook-f fa-fw"></i></a></li>
+	        </ul>
+	    </div>
+    </footer>
     </div>
   )
 }
