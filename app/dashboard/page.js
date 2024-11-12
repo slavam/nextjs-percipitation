@@ -32,7 +32,7 @@ export default async function Page() {
   return (
     <div>
       
-    <link rel="stylesheet" href="//cdn.weatherapi.com/v5/assets/css/theme.css" />       
+    {/* <link rel="stylesheet" href="//cdn.weatherapi.com/v5/assets/css/theme.css" />        */}
      {/* <link rel="stylesheet" href="/static/css/weather-5.css" /> */}
       {/* <link rel="shortcut icon" href="//cdn.weatherapi.com/favicon.ico" /><link rel="icon" type="image/vnd.microsoft.icon" href="//cdn.weatherapi.com/favicon.ico" /><link rel="apple-touch-icon" sizes="180x180" href="//cdn.weatherapi.com/apple-touch-icon.png" /><link rel="icon" type="image/png" sizes="32x32" href="//cdn.weatherapi.com/favicon-32x32.png" /><link rel="icon" type="image/png" sizes="16x16" href="//cdn.weatherapi.com/favicon-16x16.png" /><link rel="manifest" href="//cdn.weatherapi.com/site.webmanifest" /> */}
       <div id="weatherapi-weather-widget-3"></div>

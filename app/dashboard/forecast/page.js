@@ -76,7 +76,7 @@ export default async function Page({searchParams}) {
   let pressure = []
   for (let i = 0; i < 8; i++) {
     let data = forecastByHour[i*3]
-    icons.push(<th key={i} ><img class="img-thumbnail rounded float-start " src={data.condition.icon} alt={data.condition.text} title={data.condition.text} /> </th>)
+    icons.push(<th key={i} ><img className="img-thumbnail rounded float-start " src={data.condition.icon} alt={data.condition.text} title={data.condition.text} /> </th>)
     let realTemp = realTemps[i]? `/${realTemps[i]}`: null
     temp.push(<th key={i} >{data.temp_c}{realTemp}</th>)
     wind.push(<th key={i} >{(data.wind_kph*1000/3600).toFixed(1)}</th>)
@@ -95,67 +95,67 @@ export default async function Page({searchParams}) {
       <div className="flex w-full items-center justify-between">
         <h1 className={`${lusitana.className} text-2xl`}>Прогноз погоды в г. Донецк на {totalForecast.forecast.forecastday[iDay].date}</h1> {/* {new Date(totalForecast.location.localtime_epoch*1000).toLocaleDateString('ru',options)}</h1> */}
       </div>
-      <div class="bg-light border rounded nav-scroller py-1 mb-2">
-        <nav class="nav d-flex justify-content-between">
+      <div className="bg-light border rounded nav-scroller py-1 mb-2">
+        <nav className="nav d-flex justify-content-between">
           {days}
         </nav>
       </div>
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary"></strong>
+      <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
+        <div className="col p-4 d-flex flex-column position-static">
+          <strong className="d-inline-block mb-2 text-primary"></strong>
           {/* <h3 class="mb-0">{JSON.stringify(realWeather)}</h3> */}
-          <p class="card-text mb-auto">
-            <img class="img-thumbnail rounded float-start " src={todayForecastIcon} alt="Weather is Partly Cloudy " title="Weather is Partly Cloudy " /> 
+          <p className="card-text mb-auto">
+            <img className="img-thumbnail rounded float-start " src={todayForecastIcon} alt="Weather is Partly Cloudy " title="Weather is Partly Cloudy " /> 
             {name} ожидается <b>{todayForecastText}</b>. Дневная температура достигнет <b>{todayForecastMaxTemp} &deg;C</b>. Ночью температура опустится до <b>{todayForecastMinTemp} &deg;C</b>. {todayForecastPercipitation}. Влажность будет около <b>{todayForecastHumidity}%</b>. Скорость ветра <b>{maxWind} м/сек</b>
           </p>
         </div>
       </div>
-      <div class="table-responsive">
-        <div class="col p-4 d-flex flex-column position-static">
-          <table class="table table-condensed table-hover table-bordered small">
+      <div className="table-responsive">
+        <div className="col p-4 d-flex flex-column position-static">
+          <table className="table table-condensed table-hover table-bordered small">
             <thead>
-              <tr style={{'background-color': '#666666', height: '80px'}}>
+              <tr style={{'backgroundColor': '#666666', height: '80px'}}>
                 <th style={{width:'150px'}}>&nbsp;</th>
                 {hdr}
               </tr>
-              <tr style={{height: '80px', 'background-color': '#222222'}}>
-                <th style={{'background-color': '#666666'}}>Погода</th>
+              <tr style={{height: '80px', 'backgroundColor': '#222222'}}>
+                <th style={{'backgroundColor': '#666666'}}>Погода</th>
                 {icons}
               </tr>
-              <tr style={{height: '80px', 'background-color': '#222222'}}>
-                <th style={{'background-color': '#666666'}}>Температура &deg;C<br/>{postTemp}</th>
+              <tr style={{height: '80px', 'backgroundColor': '#222222'}}>
+                <th style={{'backgroundColor': '#666666'}}>Температура &deg;C<br/>{postTemp}</th>
                 {temp}
               </tr>
-              <tr style={{height: '80px', 'background-color': '#222222'}}>
-                <th style={{'background-color': '#666666'}}>Скорость ветра м/сек</th>
+              <tr style={{height: '80px', 'backgroundColor': '#222222'}}>
+                <th style={{'backgroundColor': '#666666'}}>Скорость ветра м/сек</th>
                 {wind}
               </tr>
-              <tr style={{height: '80px', 'background-color': '#222222'}}>
-                <th style={{'background-color': '#666666'}}>Направление ветра &deg;</th>
+              <tr style={{height: '80px', 'backgroundColor': '#222222'}}>
+                <th style={{'backgroundColor': '#666666'}}>Направление ветра &deg;</th>
                 {windDegree}
               </tr>
-              <tr style={{height: '80px', 'background-color': '#222222'}}>
-                <th style={{'background-color': '#666666'}}>Осадки мм</th>
+              <tr style={{height: '80px', 'backgroundColor': '#222222'}}>
+                <th style={{'backgroundColor': '#666666'}}>Осадки мм</th>
                 {precip}
               </tr>
-              <tr style={{height: '80px', 'background-color': '#222222'}}>
-                <th style={{'background-color': '#666666'}}>Облачность %</th>
+              <tr style={{height: '80px', 'backgroundColor': '#222222'}}>
+                <th style={{'backgroundColor': '#666666'}}>Облачность %</th>
                 {cloud}
               </tr>
-              <tr style={{height: '80px', 'background-color': '#222222'}}>
-                <th style={{'background-color': '#666666'}}>Влажность %</th>
+              <tr style={{height: '80px', 'backgroundColor': '#222222'}}>
+                <th style={{'backgroundColor': '#666666'}}>Влажность %</th>
                 {humidity}
               </tr>
-              <tr style={{height: '80px', 'background-color': '#222222'}}>
-                <th style={{'background-color': '#666666'}}>Давление mb</th>
+              <tr style={{height: '80px', 'backgroundColor': '#222222'}}>
+                <th style={{'backgroundColor': '#666666'}}>Давление mb</th>
                 {pressure}
               </tr>
             </thead>
           </table>
         </div>
       </div>
-      <div class="footer-bottom text-center pb-5">
-	      <small class="copyright">Copyright &copy; <a href="https://www.weatherapi.com" title="Weather API">Weather API</a></small>
+      <div className="footer-bottom text-center pb-5">
+	      <small className="copyright">Copyright &copy; <a href="https://www.weatherapi.com" title="Weather API">Weather API</a></small>
       </div>
     </div>
   )

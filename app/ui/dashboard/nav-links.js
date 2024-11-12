@@ -38,6 +38,11 @@ const links = [
     href: '/dashboard/forecast',
     icon: DocumentDuplicateIcon,
   },
+  {
+    name: 'Hydro',
+    href: '/dashboard/hydro',
+    icon: DocumentDuplicateIcon,
+  },
   // { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
 ];
 

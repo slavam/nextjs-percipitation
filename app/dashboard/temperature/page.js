@@ -9,12 +9,14 @@ export default async function Page({searchParams}) {
   const reportDate = searchParams?.reportDate || new Date().toISOString().slice(0,10)
   let reportDateSec = Math.round(new Date(reportDate).getTime()/1000)
   const points='0,10800,21600,32400,43200,54000,64800,75600'
-  let data = await fetch(`http://10.54.1.30:8640/get?quality=1&sources=100,10202&hashes=795976906,1451382247&point=${points}&stations=34519,34524,34622,34721,34615,34712&notbefore=${reportDateSec}&notafter=${reportDateSec+22*60*60}`)
+  let query = `http://10.54.1.30:8640/get?quality=1&sources=100,10202&hashes=795976906,1451382247&point=${points}&stations=34519,34524,34622,34721,34615,34712&notbefore=${reportDateSec}&notafter=${reportDateSec+22*60*60}`
+  let data = await fetch(query)
   let observations = []
   try {
     observations = await data.json()
   }catch (error) {
     console.error('Database Error:', error);
+    console.log(query)
   }
   const codeStations = [null,34519,34524,34622,34721,34615,34712]
   const starts = [0,3,6,9,12,15,18,21]

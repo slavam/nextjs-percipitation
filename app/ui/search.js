@@ -9,20 +9,22 @@ export default function Search() {
   const { replace } = useRouter()
   let today = new Date()
   const [reportDate, setReportDate] = useState(today.toISOString().slice(0,10))
+  const maxDate = today.toISOString().slice(0,10)
 
   const handleSearch = e=>{
-    setReportDate(e.target.value)
+    let d = e.target.value
+    if(d>maxDate){
+      d = maxDate
+    }
+    setReportDate(d)
     const params = new URLSearchParams(searchParams)
-    params.set('reportDate', e.target.value)
+    params.set('reportDate', d)
     replace(`${pathname}?${params.toString()}`)
   }
   return (
     <div className="relative flex flex-1 flex-shrink-0">
       <div>
-        {/* <label htmlFor ="search">
-          Отчетный месяц
-        </label> */}
-        <input id="search" type='date' value={reportDate} onChange={(e)=> handleSearch(e)} className="peer block bg-blue-500 w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-100"/>
+        <input id="search" type='date' value={reportDate} max={maxDate} onChange={(e)=> handleSearch(e)} className="peer block bg-blue-500 w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-100"/>
 			</div>
     </div>
   );
