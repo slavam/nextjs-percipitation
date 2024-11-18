@@ -8,7 +8,8 @@ export default function Search() {
   const pathname = usePathname();
   const { replace } = useRouter()
   let today = new Date()
-  const [reportDate, setReportDate] = useState(today.toISOString().slice(0,10))
+  // const reportDate = Number(searchParams.get('reportDate')) || today.toISOString().slice(0,10)
+  const [reportDate, setReportDate] = useState(Number(searchParams.get('reportDate')) || today.toISOString().slice(0,10))
   const maxDate = today.toISOString().slice(0,10)
 
   const handleSearch = e=>{

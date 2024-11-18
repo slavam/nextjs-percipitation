@@ -52,9 +52,9 @@ export default async function Page() {
     {/* <link rel="stylesheet" href="//cdn.weatherapi.com/v5/assets/css/theme.css" />        */}
       {/* <div id="weatherapi-weather-widget-3"></div> */}
       <h1 className={`${lusitana.className} text-2xl`}>Погода в г. Донецк на {new Date(totalForecast.location.localtime_epoch*1000).toLocaleDateString('ru',options)}</h1>
-      <div class="table-responsive">
+      <div className="table-responsive">
         {/* <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative"> */}
-        <table class="table table-condensed table-hover table-bordered small">
+        <table className="table table-condensed table-hover table-bordered small">
           <thead>
             <tr style={{'background-color': '#666666', height: '80px'}}>
               <th style={{width:'150px'}}>Восход: {sunrise}<br />Закат: {sunset}</th>
@@ -68,7 +68,7 @@ export default async function Page() {
         {/* </div> */}
         {/* <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative"> */}
           <h1 className={`${lusitana.className} text-2xl`}>Почасовой прогноз</h1>
-          <table class="table table-condensed table-hover table-bordered small">
+          <table className="table table-condensed table-hover table-bordered small">
             <thead>
               <tr>{hdr}</tr>
               <tr style={{height: '80px', 'backgroundColor': '#222222'}}>
@@ -86,9 +86,9 @@ export default async function Page() {
             </thead>
           </table>
       </div>
-    <footer class="footer">
-      <div class="footer-bottom text-center pb-5">
-	        <small class="copyright">Copyright &copy; <a href="https://www.weatherapi.com" title="Weather API">Weather API</a></small>
+    <footer className="footer">
+      <div className="footer-bottom text-center pb-5">
+	        <small className="copyright">Copyright &copy; <a href="https://www.weatherapi.com" title="Weather API">Weather API</a></small>
 	        {/* <ul class="social-list list-unstyled pt-4 mb-0">
 			      <li class="list-inline-item"><a href="https://github.com/weatherapicom/" target="_blank"><i class="fab fa-github fa-fw"></i></a></li> 
 	          <li class="list-inline-item"><a href="https://twitter.com/weatherapidev/" target="_blank"><i class="fab fa-twitter fa-fw"></i></a></li>

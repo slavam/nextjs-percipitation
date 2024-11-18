@@ -103,7 +103,7 @@ export default async function Page({searchParams}) {
       <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
         <div className="col p-4 d-flex flex-column position-static">
           <strong className="d-inline-block mb-2 text-primary"></strong>
-          {/* <h3 class="mb-0">{JSON.stringify(realWeather)}</h3> */}
+          {/* <h3 className="mb-0">{JSON.stringify(realWeather)}</h3> */}
           <p className="card-text mb-auto">
             <img className="img-thumbnail rounded float-start " src={todayForecastIcon} alt="Weather is Partly Cloudy " title="Weather is Partly Cloudy " /> 
             {name} ожидается <b>{todayForecastText}</b>. Дневная температура достигнет <b>{todayForecastMaxTemp} &deg;C</b>. Ночью температура опустится до <b>{todayForecastMinTemp} &deg;C</b>. {todayForecastPercipitation}. Влажность будет около <b>{todayForecastHumidity}%</b>. Скорость ветра <b>{maxWind} м/сек</b>
