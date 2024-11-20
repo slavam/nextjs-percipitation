@@ -88,7 +88,6 @@ export async function fetchHydroData1(reportDate){
 
 export async function fetchDailyTemperatures(reportDate){
   let reportDateSec = Math.round(new Date(reportDate).getTime()/1000)
-  // const points='0,10800,21600,32400,43200,54000,64800,75600'
   revalidatePath('/dashboard/temperature')
   let query = `http://10.54.1.30:8640/get?quality=1&sources=100,10202&hashes=795976906,1451382247&point=0,10800,21600,32400,43200,54000,64800,75600&stations=34519,34524,34622,34721,34615,34712&notbefore=${reportDateSec}&notafter=${reportDateSec+22*60*60}`
   let data = await fetch(query)
@@ -98,5 +97,43 @@ export async function fetchDailyTemperatures(reportDate){
   }catch (error) {
     console.error('API Error:', error);
     console.log(query)
+  }
+}
+export async function fetchMonthlyTemperatures(reportMonth){
+  let lastDay = 32 - new Date(+reportMonth.slice(0,4), +(reportMonth.slice(5,7))-1, 32).getDate()
+  let date1 = reportMonth+'-01'
+  let dateSec1 = Math.round(new Date(date1).getTime()/1000)
+  let dateSec2 = dateSec1+lastDay*24*60*60
+  revalidatePath('/dashboard/tempAvgMonth')
+  try {
+    let data = await fetch(`http://10.54.1.30:8640/get?quality=1&sources=100,10202&hashes=795976906,1451382247&point=0,10800,21600,32400,43200,54000,64800,75600&stations=34519,34524,34622,34721,34615,34712&notbefore=${dateSec1}&notafter=${dateSec2}`)
+    let observations = await data.json()
+    return observations
+  }catch (error) {
+    console.error('API Error:', error);
+  }
+}
+export async function fetchWeatherForecast3(){
+  const apiKey = process.env.WEATHER_API_KEY
+  const query = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=id:2495932&days=3`
+  revalidatePath('/dashboard/forecast')
+  try {
+    let data = await fetch(query)
+    let totalForecast = await data.json()
+    return totalForecast
+  }catch (error) {
+    console.error('WeatherAPI Error:', error);
+  }
+}
+export async function fetchTodayTempDonetsk(){
+  const reportDate = new Date().toISOString().slice(0,10)
+  let reportDateSec = Math.round(new Date(reportDate).getTime()/1000)
+  // revalidatePath('/dashboard/forecast')
+  try {
+    let data = await fetch(`http://10.54.1.30:8640/get?quality=1&sources=100&hashes=795976906&point=0,10800,21600,32400,43200,54000,64800,75600&stations=34519&notbefore=${reportDateSec}&notafter=${reportDateSec+22*60*60}`)
+    let realWeather = await data.json()
+    return realWeather
+  }catch (error) {
+    console.error('CSDN API Error:', error);
   }
 }

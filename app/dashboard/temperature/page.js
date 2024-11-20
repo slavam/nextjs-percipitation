@@ -4,14 +4,11 @@ import { lusitana } from '@/app/ui/fonts'
 import DailyTempTable from '@/app/ui/dailyTemp/dailyTempTable'
 import { Suspense } from 'react'
 
-// const absoluteZero = 273.15
 export const metadata = {
   title: 'Средняя температура за сутки',
 }
 export default async function Page({searchParams}) {
   const reportDate = searchParams?.reportDate || new Date().toISOString().slice(0,10)
-  // let observations = await fetchDailyTemperatures(reportDate)
-  
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between">
