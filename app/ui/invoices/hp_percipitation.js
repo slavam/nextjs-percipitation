@@ -1,4 +1,6 @@
-export default async function HpPercipitation({date1, date2}){
+import {fetchPrecipitationHP} from '@/app/lib/data'
+
+export default async function HpPercipitation({date1, date2,monthName}){
 // 83026 ГП с.Захаровка, р. Берда
 // 83028 ГП Донецк, р.Кальмиус
 // 83036 ГП Пгт Сартана, р. Кальмиус
@@ -7,13 +9,8 @@ export default async function HpPercipitation({date1, date2}){
 // 83048 ГП Мариуполь, р.Кальчик
 // 83050 ГП Кременевка, р. Малый Кальчик
 // 83060 ГП Дмитровка
-  // const qParams = {
   const posts = '83026,83028,83036,83040,83045,83048,83050,83060'
-  //   notbefore: date1, //`${date1.slice(0,10)}T00:00:00`,
-  //   notafter: date2, //`${date2.slice(0,10)}T23:59:59`,
-  // }
-	let data = await fetch(`http://10.54.1.11:8083/observations/observations?limit=0&sources=1500&streams=0&hashes=869481287&min_quality=1&stations=${posts}&after=${date1}&before=${date2}`)
-  let observations = await data.json()
+  let observations = await fetchPrecipitationHP(date1,date2) //await data.json()
   let perc = new Array(8).fill(null)
   observations.forEach(o => {
     let i = posts.split(',').indexOf(o.station)
@@ -40,7 +37,7 @@ export default async function HpPercipitation({date1, date2}){
     header.push(<th key={i} scope="col" className="px-3 py-5 font-medium">{i}</th>)
   }
   return <div>
-		<h1>Осадки по данным гидропостов за {date1.slice(5,7)} месяц {date1.slice(0,4)} года</h1>
+		<h1>Осадки по данным гидропостов за {monthName} месяц {date1.slice(0,4)} года</h1>
 		<table className="hidden min-w-full rounded-md text-gray-900 md:table">
       <thead className="rounded-md bg-gray-400 text-left text-sm font-normal">
 				<tr key="00">

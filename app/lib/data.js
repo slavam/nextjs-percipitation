@@ -113,14 +113,16 @@ export async function fetchMonthlyTemperatures(reportMonth){
     console.error('API Error:', error);
   }
 }
-export async function fetchWeatherForecast3(){
+export async function fetchWeatherForecast3(path){
   const apiKey = process.env.WEATHER_API_KEY
   const query = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=id:2495932&days=3`
-  revalidatePath('/dashboard/forecast')
+  // revalidatePath('/dashboard/forecast')
+  revalidatePath(path)
   try {
     let data = await fetch(query)
-    let totalForecast = await data.json()
-    return totalForecast
+    return await data.json()
+    // let totalForecast = await data.json()
+    // return totalForecast
   }catch (error) {
     console.error('WeatherAPI Error:', error);
   }
@@ -136,4 +138,38 @@ export async function fetchTodayTempDonetsk(){
   }catch (error) {
     console.error('CSDN API Error:', error);
   }
+}
+export async function fetchPrecipitation(reportMonth){
+  let lastDay = 32 - new Date(+reportMonth.slice(0,4), +(reportMonth.slice(5,7))-1, 32).getDate()
+  const stations = '34519,34524,34622,34721,34615,34712'
+  const notbefore = `${reportMonth}-01T00:00:00`
+  const notafter = `${reportMonth}-${lastDay}T23:59:59`
+  revalidatePath('/dashboard/precipitation')
+  try {
+    let data = await fetch(`http://10.54.1.11:8083/observations/observations?limit=0&sources=100&streams=0&hashes=870717212&min_quality=1&syn_hours=15:00,03:00&stations=${stations}&after=${notbefore}&before=${notafter}`)
+    let observations = await data.json()
+    return observations
+  } catch (error) {
+    console.error('CSDN API Error:', error)
+  }
+}
+export async function fetchPrecipitationHP(date1,date2){
+  try {
+    let data = await fetch(`http://10.54.1.11:8083/observations/observations?limit=0&sources=1500&streams=0&hashes=869481287&min_quality=1&stations=83026,83028,83036,83040,83045,83048,83050,83060&after=${date1}&before=${date2}`)
+    let observations = await data.json()
+    return observations  
+  } catch (error) {
+    console.error('CSDN API Error:', error)
+  }
+}
+export async function fetchPrecipitationOther(month,year){
+  // let data = await fetch(`http://localhost:3002/other_observations/monthly_precipitation?format=json&month=${month}&year=${year}`)
+  try {
+    let data = await fetch(`http://10.54.1.6:8080/other_observations/monthly_precipitation?format=json&month=${month}&year=${year}`)
+    // let observations = await data.json()
+    return await data.json()
+  } catch (error) {
+    console.error('HMC DNR API Error:', error)
+  }
+  
 }

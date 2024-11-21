@@ -1,7 +1,9 @@
-export default async function OtherPercipitation({year, month, lastDay}){
-  let data = await fetch(`http://10.54.1.6:8080/other_observations/monthly_precipitation?format=json&month=${month}&year=${year}`)
-  // let data = await fetch(`http://localhost:3002/other_observations/monthly_precipitation?format=json&month=${month}&year=${year}`)
-  let observations = await data.json()
+import {fetchPrecipitationOther} from '@/app/lib/data'
+export default async function OtherPercipitation({year, month, lastDay,monthName}){
+  // let data = await fetch(`http://10.54.1.6:8080/other_observations/monthly_precipitation?format=json&month=${month}&year=${year}`)
+  // // let data = await fetch(`http://localhost:3002/other_observations/monthly_precipitation?format=json&month=${month}&year=${year}`)
+  // let observations = await data.json()
+  let observations = await fetchPrecipitationOther(month,year)
   observations = observations.precipitation
   let body = []
   // const mStations = ['Авдотьино','Кировский','Макеевка','Старобешево','Тельманово']
@@ -20,7 +22,7 @@ export default async function OtherPercipitation({year, month, lastDay}){
     header.push(<th key={i} scope="col" className="px-3 py-5 font-medium">{i}</th>)
   }
   return <div>
-    <h1>Осадки по данным прочих источников за {month} месяц {year} года</h1>
+    <h1>Осадки по данным прочих источников за {monthName} месяц {year} года</h1>
 		<table className="hidden min-w-full rounded-md text-gray-900 md:table">
       <thead className="rounded-md bg-gray-400 text-left text-sm font-normal">
 				<tr key="00">

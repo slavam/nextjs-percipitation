@@ -1,6 +1,6 @@
 import { lusitana } from '@/app/ui/fonts';
 import ReportMonth from '@/app/ui/reportMonth';
-import { Suspense } from 'react';
+import { Suspense } from 'react'
 import MonthlyTempTable from '@/app/ui/monthlyTemp/monthlyTempTable'
  
 export default async function Page({searchParams}) {

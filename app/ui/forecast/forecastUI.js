@@ -27,7 +27,7 @@ async function ForecastDescription({iDay,todayForecast}) {
 }
 
 export default async function ForecastTable({iDay}) {
-  const totalForecast = await fetchWeatherForecast3()
+  const totalForecast = await fetchWeatherForecast3('/dashboard/forecast')
   const todayForecast = totalForecast.forecast.forecastday[iDay].day
   let realWeather = []
   let realTemps = []
