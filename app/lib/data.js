@@ -78,6 +78,7 @@ export async function fetchHydroData1(reportDate){
   let dateSec1 = Math.round(new Date(reportDate).getTime()/1000)
   let query = `http://10.54.1.30:8640/get?quality=1&sources=1500,10202&hashes=-1334432274,622080813,751364125&stations=83026,83028,83036,83040,83045,83048,83050,83060&notbefore=${dateSec1}&notafter=${dateSec1+24*3600}`
   let data = await fetch(query)
+  // console.log(query)
   try {
     let observations = await data.json()
     return observations

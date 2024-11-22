@@ -13,7 +13,7 @@ export default async function Page() {
   return (
     <div>
     {/* <link rel="stylesheet" href="//cdn.weatherapi.com/v5/assets/css/theme.css" />        */}
-      <h1 className={`${lusitana.className} text-2xl`}>Погода в г. Донецк на {new Date().toLocaleDateString('ru',options)}</h1>
+      <h1 className={`${lusitana.className} text-2xl`}>Погода в Донецке на {new Date().toLocaleDateString('ru',options)}</h1>
       <Suspense key='0' fallback={<div>Loading...</div>}>
         <TodayForecast/>
       </Suspense>

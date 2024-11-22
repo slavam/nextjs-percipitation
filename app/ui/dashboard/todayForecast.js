@@ -3,11 +3,11 @@ import { lusitana } from '@/app/ui/fonts'
 
 export default async function TodayForecast() {
   let totalForecast = await fetchWeatherForecast3('/dashboard')
-  let options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }
+  // let options = {
+  //   year: 'numeric',
+  //   month: 'long',
+  //   day: 'numeric',
+  // }
   const todayForecast = totalForecast.forecast.forecastday[0].day
   const totalPrecip = todayForecast.totalprecip_mm
   const todayForecastMaxTemp = todayForecast.maxtemp_c
@@ -36,10 +36,10 @@ export default async function TodayForecast() {
     <div>
       <table className="table table-condensed table-hover table-bordered small">
         <thead>
-          <tr style={{'background-color': '#666666', height: '80px'}}>
-            <th >Восход: {sunrise}<br />Закат: {sunset}</th>
-            <th >Max:<br />{todayForecastMaxTemp} &deg;C</th>
-            <th >Min:<br />{todayForecastMinTemp} &deg;C</th>
+          <tr style={{'backgroundColor': '#666666', height: '80px'}}>
+            <th style={{width:'150px'}}>Восход: {sunrise}<br />Закат: {sunset}</th>
+            <th style={{width:'150px'}}>Max:<br />{todayForecastMaxTemp} &deg;C</th>
+            <th style={{width:'150px'}}>Min:<br />{todayForecastMinTemp} &deg;C</th>
             <th style={{width:'150px'}}>Осадки:<br />{totalPrecip} mm</th>
             <th style={{width:'150px'}}>Скорость ветра:<br />{maxWind} м/сек</th>
           </tr>
