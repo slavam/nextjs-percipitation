@@ -1,4 +1,4 @@
-import connection from '@/app/mysql'
+// import connection from '@/app/mysql'
 import { revalidatePath } from 'next/cache'
 
 const ITEMS_PER_PAGE = 15;

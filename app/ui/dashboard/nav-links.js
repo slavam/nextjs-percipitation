@@ -28,11 +28,11 @@ const links = [
     href: '/dashboard/tempAvgMonth',
     icon: DocumentDuplicateIcon,
   },
-  {
-    name: 'Измерения',
-    href: '/dashboard/measurements',
-    icon: DocumentDuplicateIcon,
-  },
+  // {
+  //   name: 'Измерения',
+  //   href: '/dashboard/measurements',
+  //   icon: DocumentDuplicateIcon,
+  // },
   {
     name: 'Прогноз',
     href: '/dashboard/forecast',

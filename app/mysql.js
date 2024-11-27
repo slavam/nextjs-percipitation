@@ -5,6 +5,9 @@ const connection = mysql.createConnection({
   password: 'slavam1',
   database: 'hmc_development',
   // port: 3306,
-//   adapter: 'mysql2'
+  // host: '10.54.1.6',
+  // database: 'hmc_production',
+  // user: 'db-admin',
+  // password: 'Pw_Hmc12345'
 });
 export default connection;
