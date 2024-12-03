@@ -9,7 +9,7 @@ export default async function OtherPercipitation({year, month, lastDay,monthName
   // const mStations = ['Авдотьино','Кировский','Макеевка','Старобешево','Тельманово']
   const mStations = ['Авдотьино','Кировский','Макеевка','Старобешево','Тельманово','Раздольное','Стрюково','Дмитровка','Новоселовка','Благодатное','Алексеево-Орловка']
   for (let j = 0; j < mStations.length; j++) {
-    let row = [<td key={j} className="whitespace-nowrap bg-white px-4 py-5 text-sm">{mStations[j]}</td>]
+    let row = [<td key={j+100} className="whitespace-nowrap bg-white px-4 py-5 text-sm">{mStations[j]}</td>]
     for (let i = 1; i <= lastDay; i++) {
       let val = (observations[i] && observations[i][j])? `${observations[i][j][0]===null?'':observations[i][j][0]}/${observations[i][j][1]===null?'':observations[i][j][1]}`:''
       row.push(<td key={i} className="whitespace-nowrap bg-white px-2 py-5 text-sm">{val}</td>)
@@ -26,7 +26,7 @@ export default async function OtherPercipitation({year, month, lastDay,monthName
 		<table className="hidden min-w-full rounded-md text-gray-900 md:table">
       <thead className="rounded-md bg-gray-400 text-left text-sm font-normal">
 				<tr key="00">
-					<th key="00" scope="col" className="px-4 py-5 font-medium sm:pl-6">
+					<th key="0" scope="col" className="px-4 py-5 font-medium sm:pl-6">
 						Источник
 					</th>
 					{header}

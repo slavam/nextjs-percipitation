@@ -1,6 +1,6 @@
 import Form from '@/app/ui/measurements/create-form'
 import Breadcrumbs from '@/app/ui/measurements/breadcrumbs'
-// import connection from '@/app/mysql'
+import connection from '@/app/mysql'
 import SearchWeather from '@/app/ui/measurements/searchWeather';
 
 const postId2stationCode = postId=>{
@@ -50,8 +50,8 @@ export default async function Page({searchParams}) {
           weather.windDirection = +w.value
       }
     })
-  const [posts] = [] //await connection.promise().query('SELECT * FROM posts WHERE active=1;');
-  const [materials] = [] //await connection.promise().query('SELECT * FROM materials WHERE active=1;');
+  const [posts] = await connection.promise().query('SELECT * FROM posts WHERE active=1;');
+  const [materials] = await connection.promise().query('SELECT * FROM materials WHERE active=1;');
   let p = posts.find(p=>p.id=== +postId)
   return (
     <main>

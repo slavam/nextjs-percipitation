@@ -1,4 +1,4 @@
-// import connection from '@/app/mysql'
+import connection from '@/app/mysql'
 import { revalidatePath } from 'next/cache'
 
 const ITEMS_PER_PAGE = 15;
@@ -30,6 +30,7 @@ export async function fetchMeasurements(currentPage) {
 }
 
 export async function fetchMeasurementsPages() {
+  
   try {
     const count = await connection.promise().query(`SELECT COUNT(*) FROM measurements;`);
     const totalPages = Math.ceil(Number(count[0][0]['COUNT(*)']) / ITEMS_PER_PAGE);

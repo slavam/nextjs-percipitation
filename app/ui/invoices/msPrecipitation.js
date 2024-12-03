@@ -18,7 +18,7 @@ export default async function PrecipitationMSTable({reportMonth,lastDay,monthNam
     let row = [<td key={i+100} className="whitespace-nowrap bg-white px-4 py-5 text-sm">{mStations[i]}</td>]
     let j = 1
     while (j < prec[i]?.length) {
-      row.push(<td key={i} className="whitespace-nowrap bg-white px-2 py-5 text-sm">{prec[i][j]?prec[i][j]:''}/{prec[i][j+1]?prec[i][j+1]:''}</td>);
+      row.push(<td key={j} className="whitespace-nowrap bg-white px-2 py-5 text-sm">{prec[i][j]?prec[i][j]:''}/{prec[i][j+1]?prec[i][j+1]:''}</td>);
       j+=2
     }
     body.push(<tr key={i} className="group">{row}</tr>)
