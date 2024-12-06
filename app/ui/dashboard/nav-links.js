@@ -24,6 +24,11 @@ const links = [
     icon: DocumentDuplicateIcon,
   },
   {
+    name: 'Среднесуточная температура с...',
+    href: '/dashboard/dailyTempStartingFrom',
+    icon: DocumentDuplicateIcon,
+  },
+  {
     name: 'Среднесуточная температура за месяц',
     href: '/dashboard/tempAvgMonth',
     icon: DocumentDuplicateIcon,

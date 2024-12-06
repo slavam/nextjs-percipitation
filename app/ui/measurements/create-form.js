@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useFormStatus } from "react-dom"
+// import { useFormStatus } from "react-dom"
 let values = {}
 export default function Form({ weather, materials, postId, date, term }) {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
-  const { pending } = useFormStatus()
+  // const { pending } = useFormStatus()
   
   const handleValueChange = e=>{
     values[+e.target.id]=e.target.value
