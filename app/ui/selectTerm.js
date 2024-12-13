@@ -25,8 +25,8 @@ export default function SelectTerm({reportDate}) {
           id="term"
           name="term"
           className="peer block bg-blue-500 w-40 rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2"
-          // value={startTerm}
-          defaultValue='0'
+          value={startTerm}
+          // defaultValue='0'
           onChange={(e) => {
             handleSearch(e);
           }}

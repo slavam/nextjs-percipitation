@@ -12,6 +12,7 @@ export default async function Page({searchParams}) {
   const startTerm = searchParams?.startTerm || 0
   return (
     <div className="w-full">
+      {/* <p>{reportDate} {startTerm}</p> */}
       <div className="flex w-full items-center justify-between">
         <h1 className={`${lusitana.className} text-2xl`}>Среднесуточная температура</h1>
       </div>

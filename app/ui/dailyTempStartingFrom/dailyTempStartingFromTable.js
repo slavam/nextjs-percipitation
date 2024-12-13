@@ -23,7 +23,7 @@ export default async function DailyTempStartingFromTable({reportDate,startTerm})
     temps[i][9]+= +o.temperature
     temps[i][10]+=1
   })
-  // console.log(temps[1])
+  // console.log(observations[0])
   const createTr = (i) => {
     if(temps[i][10]>0)temps[i][9] = +((temps[i][9]/temps[i][10]).toFixed(2))
     let row = []
