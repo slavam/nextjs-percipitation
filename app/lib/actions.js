@@ -4,13 +4,11 @@
 import connection from '@/app/mysql'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-// import { signIn } from '@/auth';
+import { signIn } from '@/auth';
 import { AuthError } from 'next-auth'
 
-export async function authenticate(
-  prevState,
-  formData,
-) {
+export async function authenticate(prevState,formData) {
+  // console.log(formData)
   try {
     await signIn('credentials', formData);
   } catch (error) {

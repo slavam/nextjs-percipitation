@@ -9,7 +9,7 @@ export default async function Page() {
     month: 'long',
     day: 'numeric',
   }
-  revalidatePath('/dashboard')
+  // revalidatePath('/dashboard')
   return (
     <div>
     {/* <link rel="stylesheet" href="//cdn.weatherapi.com/v5/assets/css/theme.css" />        */}

@@ -107,7 +107,7 @@ export async function fetchHydroData1(reportDate){
 
 export async function fetchDailyTemperatures(reportDate){
   let reportDateSec = Math.round(new Date(reportDate).getTime()/1000)
-  revalidatePath('/dashboard/temperature')
+  // revalidatePath('/dashboard/temperature')
   let query = `http://10.54.1.30:8640/get?quality=1&sources=100,10202&hashes=795976906,1451382247&point=0,10800,21600,32400,43200,54000,64800,75600&stations=34519,34524,34622,34721,34615,34712&notbefore=${reportDateSec}&notafter=${reportDateSec+22*60*60}`
   let data = await fetch(query)
   try {
@@ -123,7 +123,7 @@ export async function fetchMonthlyTemperatures(reportMonth){
   let date1 = reportMonth+'-01'
   let dateSec1 = Math.round(new Date(date1).getTime()/1000)
   let dateSec2 = dateSec1+lastDay*24*60*60
-  revalidatePath('/dashboard/tempAvgMonth')
+  // revalidatePath('/dashboard/tempAvgMonth')
   try {
     let data = await fetch(`http://10.54.1.30:8640/get?quality=1&sources=100,10202&hashes=795976906,1451382247&point=0,10800,21600,32400,43200,54000,64800,75600&stations=34519,34524,34622,34721,34615,34712&notbefore=${dateSec1}&notafter=${dateSec2}`)
     let observations = await data.json()
@@ -136,7 +136,7 @@ export async function fetchWeatherForecast3(path){
   const apiKey = process.env.WEATHER_API_KEY
   const query = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=id:2495932&days=3`
   // revalidatePath('/dashboard/forecast')
-  revalidatePath(path)
+  // revalidatePath(path)
   try {
     let data = await fetch(query)
     return await data.json()
@@ -163,7 +163,7 @@ export async function fetchPrecipitation(reportMonth){
   const stations = '34519,34524,34622,34721,34615,34712'
   const notbefore = `${reportMonth}-01T00:00:00`
   const notafter = `${reportMonth}-${lastDay}T23:59:59`
-  revalidatePath('/dashboard/precipitation')
+  // revalidatePath('/dashboard/precipitation')
   try {
     let data = await fetch(`http://10.54.1.11:8083/observations/observations?limit=0&sources=100&streams=0&hashes=870717212&min_quality=1&syn_hours=15:00,03:00&stations=${stations}&after=${notbefore}&before=${notafter}`)
     let observations = await data.json()
