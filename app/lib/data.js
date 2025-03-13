@@ -35,7 +35,7 @@ export async function fetchDailyTemperatureStartingFrom(reportDate,startTerm){
   const date1 = new Date(d1).toISOString().slice(0,19).replace('T',' ')
   const d2 = d1+24*3600*1000
   const date2 = new Date(d2).toISOString().slice(0,19).replace('T',' ')
-  // console.log(date1,new Date(d1).toJSON())
+  console.log(date1,new Date(d1).toJSON())
   try {
     const [data] = await connection.promise().query(`SELECT observed_at, date, term, station_id, temperature FROM synoptic_observations WHERE station_id IN (1,2,3,4,5,10) AND observed_at BETWEEN '${date1}' AND '${date2}' ORDER BY station_id, date, term;`);
     // return await data.json()

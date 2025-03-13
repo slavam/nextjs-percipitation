@@ -6,7 +6,8 @@ import { lusitana } from '@/app/ui/fonts'
 
 export default async function Page({searchParams}) {
   const hydroPosts = await fetchHydroPosts()
-  const reportDate = searchParams?.reportDate || new Date().toISOString().slice(0,10)
+  const { reportDate } = await searchParams || new Date().toISOString().slice(0,10)
+  // const reportDate = searchParams?.reportDate || new Date().toISOString().slice(0,10)
   let observations = await fetchHydroData1(reportDate)
   return (
     <div className="w-full">

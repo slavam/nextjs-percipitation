@@ -2,6 +2,7 @@ import {fetchDailyTemperatureStartingFrom} from '@/app/lib/data'
 
 export default async function DailyTempStartingFromTable({reportDate,startTerm}) {
   let observations = await fetchDailyTemperatureStartingFrom(reportDate,startTerm)
+  // console.log(`reportDate=${reportDate}; startTerm=${startTerm}; ${observations.length}`)
   const stationsId = [null,1,3,2,10,4,5]
   const terms = [0,3,6,9,12,15,18,21]
   const start = +startTerm

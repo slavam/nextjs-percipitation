@@ -8,11 +8,12 @@ export const metadata = {
   title: 'Средняя температура за сутки, начиная с',
 }
 export default async function Page({searchParams}) {
+  // const {reportDate} = await searchParams || new Date().toISOString().slice(0,10)
+  // const {startTerm}  = await searchParams || 0
   const reportDate = searchParams?.reportDate || new Date().toISOString().slice(0,10)
-  const startTerm = searchParams?.startTerm || 0
+  const startTerm  = searchParams?.startTerm || 0
   return (
     <div className="w-full">
-      {/* <p>{reportDate} {startTerm}</p> */}
       <div className="flex w-full items-center justify-between">
         <h1 className={`${lusitana.className} text-2xl`}>Среднесуточная температура</h1>
       </div>

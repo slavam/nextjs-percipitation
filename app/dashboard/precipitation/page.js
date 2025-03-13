@@ -10,6 +10,7 @@ export const metadata = {
 }
 export default async function Page({searchParams}) {
   const reportMonth = searchParams?.reportMonth || new Date().toISOString().slice(0,7)
+  // const {reportMonth} = await searchParams || new Date().toISOString().slice(0,7)
   let lastDay = 32 - new Date(+reportMonth.slice(0,4), +(reportMonth.slice(5,7))-1, 32).getDate()
   let date1 = reportMonth+'-01'
   let d = new Date(date1)

@@ -1,6 +1,6 @@
 import { lusitana } from '@/app/ui/fonts'
 import TodayForecast from '@/app/ui/dashboard/todayForecast'
-import { revalidatePath } from 'next/cache'
+// import { revalidatePath } from 'next/cache'
 import { Suspense } from 'react'
 
 export default async function Page() {

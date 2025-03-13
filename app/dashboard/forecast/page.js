@@ -5,6 +5,7 @@ import ForecastTable from '@/app/ui/forecast/forecastUI'
 
 export default async function Page({searchParams}) {
   const iDay = +searchParams?.i_day || 0
+  // const {iDay} = await searchParams || 0
   let todayTime = new Date().getTime()
   let options = {
     month: 'long',
